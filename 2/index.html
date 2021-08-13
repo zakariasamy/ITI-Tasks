@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal page</title>
+    <style>
+        body{
+            overflow:hidden;
+            margin: 20px;
+        }
+        #left{
+            background:#c5bfbf;
+            float:left;
+            width:20%;
+        }
+        #left ul{
+            list-style-type: none;
+        }
+        #left ul li{
+            padding-bottom: 10px;
+        }
+        #left li a{
+            background-color: white;
+            color: red;
+        }
+        #left form{
+            padding: 12px;
+        }
+        #right{
+            float:right;
+            width:80%;
+            word-spacing: -8px;
+        }
+        #right *{
+            padding-left: 21px;
+        }
+
+        #right ul li{
+            display:inline;
+            padding:10px;
+            border:2px solid #5a3b3b;
+        }
+        #right ul li:hover{
+            background-color:#ddd;
+        }
+        a {
+            text-decoration: none;
+            }
+    </style>
+</head>
+<body>
+    <header id="top" style="background-color: red; height:100px;text-align:center;">
+        <h1 style="color: white;">Header</h1>
+    </header>
+
+    <div id="left">
+        <form>
+            <label>username</label><br>
+            <input type="text" name="username"><br>
+            <label>Password</label><br>
+            <input type="password" name="password"><br>
+            <input type="checkbox" name="remember">remember me<br>
+            <input type="submit" value="Login">
+        </form>
+        <ul>
+            <li><a href="#">Link 1</a></li>
+            <li><a href="#">Link 2</a></li>
+            <li><a href="#">Link 3</a></li>
+            <li><a href="#">Link 4</a></li>
+        </ul>
+    </div>
+    <div id="right">
+        <h3>This is title</h3>
+        <p>This is paragraph This is paragraph This is paragraph This is paragraph 
+            This is paragraph This is paragraph This is paragraph This is paragraph 
+            This is paragraph This is paragraph This is paragraph This is paragraph 
+        </p>
+        <ul style="list-style-type:none">
+            <li>something</li>
+            <li>something</li>
+            <li>something</li>
+        </ul>
+    </div>
+</body>
+</html>
