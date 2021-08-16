@@ -1,0 +1,213 @@
+header{
+    height:57px;
+}
+header .top{
+    color:white;
+    font-size: 21px;
+    padding:10px;
+    background-color:#009fe3;
+}
+
+header .top .email{
+    text-align: left;
+}
+
+header .top svg:hover{
+    background: #928e8e;
+}
+
+
+
+header .top .icons{
+    text-align:right;
+}
+
+header .top .icons svg{
+   margin:2px;
+   font-size: 28px;
+}
+
+header nav{
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+header nav button.first{
+    background: #0099db;
+    border: 1px solid #0099db;
+    color: #fff;
+    padding: 10px 30px;
+    border-radius: 6px;
+    min-width: 144px;
+    margin-right: 6px;
+}
+header nav button.second{
+    background: 0 0;
+    border: 1px solid #0099db;
+    color: #0099db;
+    padding: 10px 30px;
+    border-radius: 6px;
+    min-width: 144px;
+}
+
+/* Small creen */
+@media only screen and (max-width: 600px) {
+    header .top .email {
+        font-size: 18px;
+    }
+  }
+
+/* very small creen */
+@media only screen and (max-width: 390px) {
+    header .top .email {
+        width:100%;
+    }
+    nav{
+        padding:0;
+        margin:0l
+    }
+  }
+
+
+
+  features{
+      display:block;
+      padding: 128px 0 0 0;
+      text-align: center;
+
+  }
+
+  features h3{
+    font-size: 1.625rem;
+    font-family: Open Sans,sans-serif;
+    font-weight: 700;
+    line-height: 2rem;
+    margin-top: -20px;
+  }
+
+  features p{
+    color: #232323;
+    font-size: 16px;
+    line-height: 30px;
+  }
+
+  features img{
+      max-width:158px;
+      max-height:158px;
+  }
+
+  partners{
+    display:block;
+    text-align: left;
+}
+
+partners h3{
+    font-size: 31px;
+    color: #009ee2;
+    text-align: center;
+    font-weight: 700;
+}
+
+partners .name{
+    margin: 0;
+    font-size: 13px;
+    color: #000;
+    text-align: left;
+    font-weight: bold;
+}
+
+partners .country{
+    color: #009fe3;
+    font-size: 13px;
+    margin: 0;
+    line-height: 17px;
+    text-align: left;
+    font-weight: bold;
+    padding:10px 0;
+}
+
+partners p{
+    color: #222b45;
+    font-size: 12px;
+    margin: 0;
+    line-height: 16px;
+    text-align: left;
+    padding-left: 10px;
+}
+
+partners img{
+    height:80%;
+    width:80%;
+    text-align: center;
+}
+
+partners .element{
+    border: 2px solid #009fe3;
+    border-radius: 10px;
+    -webkit-transition: .3s;
+    transition: all .3s;
+    box-shadow: 0 51px 4px -41px rgb(226 226 226);
+    padding: 14px;
+    margin-top: 35px;
+}
+
+partners .controls{
+    margin: 0 !important;;
+}
+
+footer .p1{
+    background-color: #effff8;
+    padding: 40px 0;
+    text-align: center;
+}
+
+footer .p1 ul{
+    padding-top: 27px;
+}
+
+footer .p1 ul li{
+    padding: 0 3px;
+    display: inline-block;
+    line-height: 55px;
+    text-decoration: none;
+    color: #707070;
+    font-weight: 700;
+}
+
+footer .p1 ul li:nth-child(3){
+    padding-right: 50px;
+}
+
+
+
+
+
+footer .p1 .img{
+    text-align: center;
+    padding: 20px 0;
+}
+
+footer .p2{
+    background-color: #00355a;
+    color:white;
+    margin: 0;
+    text-align: center;
+    color: #fff;
+    height: 58px;
+   
+}
+
+footer .p2 div{
+    line-height: 55px;
+    height: 58px;
+}
+
+footer ul{
+    list-style: none;
+}
+
+footer .p2 ul li{
+    padding:0 10px;
+    display: inline-block;
+    line-height: 55px;
+}
