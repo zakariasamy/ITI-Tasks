@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+</head>
+<body>
+    <div class="container">
+
+</div>
+ 
+    <div class="container my-4">
+        <div class="row">
+            <div class="col-md-4">
+                <button onclick="toggle()" class="my-4 " id="showrules">Show the rules</button>
+                <ul id="rules" style="list-style-type:decimal;display:none" >
+                    <li>the number can be float or integer</li>
+                    <li>Rule 2</li>
+                </ul>
+            </div>
+            <div class="col-md-8">
+        <h1>Get the sum</h1>
+    First Number:<br>
+    <input type="text" id="first"><br>
+    Second Number<br>
+    <input type="text" id="second">
+    <br>
+    <button id="get" onClick="sum()" class="btn btn-primary my-3">Get</button>
+    <div id="result">
+    </div>
+    </div>
+</div>
+</div>
+
+
+    <script>
+
+    function sum(){
+        var first = parseFloat(document.querySelector("#first").value);
+        var second = parseInt(document.querySelector("#second").value);
+        console.log(Math.ceil(first));
+        var sum = Math.ceil(first) + second;
+        if(first != null & second != null)
+            document.querySelector("#result").innerHTML = "<div class='alert alert-success'>The result is " + sum + "</div>";
+    }
+
+    function toggle(){
+        var element = document.querySelector("#rules").style.display;
+
+        if(element == "none")
+            document.querySelector("#rules").style.display = "block";
+        else
+            document.querySelector("#rules").style.display = "none";
+       
+    }
+    </script>
+</body>
+</html>
