@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Game</title>
+    <style>
+  
+        .row *{
+            margin-bottom:10px;
+        }
+
+        .img-container{
+            
+        }
+
+        .img{
+            
+             width: 291px;
+            height: 118px;
+
+            background-image: url('images/default.jpg');
+            background-size: contain;
+            background-position: center;
+            transition: 1s ease-in-out;
+            background-repeat: no-repeat;
+            border: 1px solid #ddd;
+        }
+        
+        #playAgainButton{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Congratulations!!</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center">
+            <p id="didit">You did it</p>
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" fill="green" class="bi bi-check-circle" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
+                    <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"></path>
+                  </svg>
+            </div>
+        </div>
+        <div class="modal-footer" style="margin:auto">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" onclick="playAgain()" class="btn btn-primary" data-bs-dismiss="modal">Play again</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+    <div class="result">
+
+        <div class="container">
+            <h2 class="text-center py-4">Result ..</h2>
+            <div id="trials" class="alert alert-danger text-center">
+                Trials: 0
+            </div>
+        </div>
+    </div>
+
+    <div id="playAgainButton" class="text-center mb-3">
+        <button type="button" onclick="playAgain()" class="btn btn-success text-center" data-bs-dismiss="modal">Play again</button>
+    </div>
+    
+    <div class="container">
+    <div class="row images">
+        <!-- <div class="col-md-3 img-container"><div class="img"></div></div>
+        <div class="col-md-3 img-container"><div class="img"></div></div>
+        <div class="col-md-3 img-container"><div class="img"></div></div>
+        <div class="col-md-3 img-container"><div class="img"></div></div>
+        <div class="col-md-3 img-container"><div class="img"></div></div>
+        <div class="col-md-3 img-container"><div class="img"></div></div>
+        <div class="col-md-3 img-container"><div class="img"></div></div>
+        <div class="col-md-3 img-container"><div class="img"></div></div> -->
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <script>
+        var trials = 0;
+        var numberOfClicks = 0;
+
+        var lastClick = '';
+
+       // ==============
+       // Variables for putImageAsAttribute function
+       // ==============
+        var usedImages = new Array();
+        var numberOfTimeUsed = new Array();
+
+        var lastTwoClicked = new Array();
+        // Initialize with Zero
+        for(var i=2; i<=9;i++)
+            numberOfTimeUsed[i] = 0;
+
+        html = '';
+  
+        // =============
+        // End
+        // =============
+
+        window.onload = putImageAsAttribute;
+
+
+        // ==========
+        // Variables for clicked function
+        // ==========
+
+
+        // ALL succeded images
+        succeded = [];
+
+        clickStatus = true; // enable or disable clicking
+
+    function putImageAsAttribute(){
+
+        while(usedImages.length != 8){
+        var randomNum = Math.floor((Math.random() * 8) + 2);
+
+        // Check if the random number Not used before two times
+        if(numberOfTimeUsed[randomNum] < 2){
+            if(numberOfTimeUsed[randomNum] > 0)
+                usedImages.push(randomNum);
+                numberOfTimeUsed[randomNum]++;
+                var img = randomNum + ".png";
+            html += '<div class="col-md-3 img-container"><div id="' + img + '-' + numberOfTimeUsed[randomNum] + '"class="img" onclick="clicked(this.id)"></div></div>';
+            //html += '<div class="col-md-3"><img id="' + img + '-' + numberOfTimeUsed[randomNum] + '" src="images/default.jpg" onclick="showImg(this.id)" ></div>';  
+        }
+        
+    }
+    document.querySelector(".images").innerHTML = html;
+    }
+
+
+    
+    function clicked(id){
+        if(!increaseTrials(id))
+            return;
+
+        showImg(id);
+        
+        
+   
+        lastTwoClicked.push(id);
+
+
+    
+       if(lastTwoClicked.length == 2){
+           clickStatus = false;
+            var first = lastTwoClicked[0];
+            var second = lastTwoClicked[1];
+
+
+
+        if(first.substring(0, 5) != second.substring(0, 5)){
+            setTimeout(function(){
+                showDefault(first);
+                showDefault(second);
+             }, 1000);
+            
+        }
+
+        else{
+            succeded.push(first.substring(0, 5));
+            if(succeded.length == 8)
+                showSuccesssMessage();
+        }
+
+            setTimeout(function(){
+                clickStatus = true;
+             }, 600);
+
+
+
+        lastTwoClicked = [];
+        lastClick = ''
+        }
+          
+}
+
+    function increaseTrials(id){
+        if(id == lastClick || succeded.includes(id.substring(0, 5)) || !clickStatus)
+            return false;
+
+        lastClick = id;
+
+
+        trials++;
+        document.getElementById("trials").innerHTML = "Trials: " + trials;
+        return true;
+    }
+
+
+    function showImg(id){
+        var myimg = id.substring(0, 5);
+        var url = "url('images/" + myimg + "')";
+        document.getElementById(id).style.backgroundImage= url;
+    }
+
+    function showDefault(img){
+        document.getElementById(img).style.backgroundImage= "url('images/default.jpg')";
+    }
+
+
+    function showSuccesssMessage(){
+        document.getElementById("trials").setAttribute("class", "alert alert-success text-center");
+        document.getElementById("trials").innerHTML= "You have succeeded with (" + trials + " trials)";
+        document.getElementById("didit").innerHTML = "You did it with just (" + trials + " trials)";
+        document.getElementById("playAgainButton").style.display = "block";
+
+        var myModal = new bootstrap.Modal(document.getElementById('exampleModal'), {
+            keyboard: false
+        });
+        myModal.toggle()
+        
+
+    }
+
+
+    function playAgain(){
+        putImageAsAttribute();
+        trials = 0;
+        numberOfClicks = 0;
+        lastClick = '';
+        usedImages = new Array();
+        numberOfTimeUsed = new Array();
+
+        lastTwoClicked = new Array();
+        // Initialize with Zero
+        for(var i=2; i<=9;i++)
+            numberOfTimeUsed[i] = 0;
+
+        html = '';
+        succeded = [];
+
+        clickStatus = true;
+        document.getElementById("playAgainButton").style.display = "none";
+        document.getElementById("trials").setAttribute("class", "alert alert-danger text-center");
+        document.getElementById("trials").innerHTML = "Trials: " + trials;
+
+    }
+
+
+    </script>
+</body>
+</html>
