@@ -1,0 +1,46 @@
+1
+insert into employee(ssn, dno, superssn, fname, lname, address, bdate, sex, salary) 
+values(102672, 1, 1, 'hoda', 'ahmed', '3 street 56', '2020-07-12', 'f', 2000);
+
+2
+insert into employee(ssn, dno, fname, lname, address, bdate, sex) 
+values(102660, 1, 'goda', 'ahmed', '4 street', '2020-07-11', 'm');
+
+3
+insert into department values('DEPT IT', 100, 1, '2006-01-11');
+
+4 (a)
+update department
+set mgrssn = ( select ssn from employee where fname = 'Noha' and lname = 'Mohamed' )
+where dnumber = 100;
+
+(b)
+update department
+set mgrssn = ( select ssn from employee where fname = 'hoda' and lname = 'ahmed' )
+where dnumber = 20;
+
+(c)
+update employee
+set superssn = 102672
+where fname = 'goda' and lname = 'ahmed';
+
+
+5
+first
+update employee
+set dno = 2
+where fname = 'hoda' and lname = 'ahmed'
+
+second
+update department
+set mgrssn = (select ssn from employee where fname = 'hoda' and lname = 'ahmed')
+where mgrssn = 1;
+
+third
+delete from employee
+where fname = 'Kamel' and lname = 'Mohamed';
+
+6
+update employee
+set salary = salary + 0.1 * salary
+where ssn = 102672;

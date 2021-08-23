@@ -1,0 +1,111 @@
+1
+select * from employee;
+2
+select fname, lname, salary, dnumber from employee
+3
+select fname, lname, salary, dno from employee;
+4
+select concat(fname, " ",lname) 'Full name', salary * .1 'ANNUAL COMM' from employee;
+5
+select ssn, concat(fname, " ",lname) 'Full name' from employee
+where salary > 1000;
+6
+select ssn, concat(fname, " ",lname) 'Full name' from employee
+where salary > 10000;
+7
+select concat(fname, " ",lname) 'Full name', salary from employee
+where sex = 'f';
+8
+select dnumber, dname from department, employee m
+where mgrssn = m.ssn
+and m.ssn = 968574
+9
+select pnumber, pname, plocation from project
+where dnum = 10;
+10
+select pnumber, pname, plocation, city from project 
+where city = 'cairo'
+or city = 'Alex';
+11
+select * from project
+where pname like 'a%';
+12
+select * from employee
+where dno = 1 and salary between 1000 and 2000
+13
+SELECT dnumber, dname, concat(fname, ' ', lname) 'manager name' FROM department
+join employee on employee.ssn = department.mgrssn;
+14
+SELECT dname, pname FROM department
+join project on project.dnum = department.dnumber;
+15
+SELECT dependant.bdate 'Dependent bdate', fname FROM dependant
+join employee on dependant.ESSN = employee.ssn;
+16
+select Dependent_name, dependant.sex from dependant
+join employee on dependant.ESSN = employee.ssn
+where dependant.sex = 'f'
+and employee.sex = 'f'
+union
+select Dependent_name, dependant.sex from dependant
+join employee on dependant.ESSN = employee.ssn
+where dependant.sex = 'm'
+and employee.sex = 'm';
+
+17
+select * from employee
+where ssn in (select mgrssn from department where mgrssn is not null);
+18
+SELECT concat(fname, " ",lname) 'Full name' FROM employee
+join works_for on works_for.essn = ssn
+join project on works_for.pno = project.pnumber
+where dno = 1
+and works_for.hours >=10;
+19
+SELECT fname, lname FROM employee
+where superssn = (select ssn from employee where fname = 'Kamel' and lname = 'Mohamed');
+20
+select pname, SUM(works_for.hours) from project
+join works_for on works_for.pno = pnumber
+GROUP BY pname;
+21
+SELECT concat(fname, " ",lname) 'Full name' FROM employee
+join works_for on works_for.essn = ssn
+join project on works_for.pno = project.pnumber
+order by fname
+22
+select department.* from department
+join employee on department.dnumber = employee.dno
+where employee.ssn = (select min(ssn) from employee);
+23
+select dname, dnumber, max(salary), min(salary) from department
+join employee on department.dnumber = employee.dno
+group by dnumber;
+24
+select concat(fname, ' ', lname) from employee
+where ssn in (select superssn from employee )
+and ssn not in (select distinct essn from dependant);
+25
+SELECT dnumber, dname, count(ssn), avg(salary) FROM company.department
+join employee on employee.dno = department.dnumber
+group by dnumber
+having avg(salary) < (select avg(salary) from employee);
+26
+SELECT concat(fname, " ",lname) 'Full name', pname FROM employee
+join works_for on works_for.essn = ssn
+join project on works_for.pno = project.pnumber
+join department on employee.dno = department.dnumber
+order by dnumber, lname, fname;
+27
+select pnumber, dname, lname, address, bdate from project
+join department on project.dnum = department.dnumber
+join employee on department.mgrssn = employee.ssn
+where city = 'cairo';
+28
+SELECT pnumber FROM employee
+join works_for on works_for.essn = ssn
+join project on works_for.pno = project.pnumber
+where employee.lname = 'mohamed';
+29
+select ssn ,concat(fname, ' ', fname) 'Full name' from employee
+where not exists ( select * from dependant where essn = employee.ssn );
